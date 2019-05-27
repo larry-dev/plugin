@@ -8,12 +8,18 @@ import (
 )
 
 type Config struct {
-	Name string
+	Name      string
+	EnvPrefix string
 }
 
-func Init(cfg string) error {
+func Init(cfg string, options ...string) error {
+	prefix := "EG"
+	if len(options) > 0 {
+		prefix = options[0]
+	}
 	c := Config{
-		Name: cfg,
+		Name:      cfg,
+		EnvPrefix: prefix,
 	}
 
 	// 初始化配置文件
@@ -34,9 +40,9 @@ func (c *Config) initConfig() error {
 		viper.AddConfigPath("conf") // 如果没有指定配置文件，则解析默认的配置文件
 		viper.SetConfigName("config")
 	}
-	viper.SetConfigType("yaml") // 设置配置文件格式为YAML
-	viper.AutomaticEnv()        // 读取匹配的环境变量
-	viper.SetEnvPrefix("EG")    // 读取环境变量的前缀为EG
+	viper.SetConfigType("yaml")     // 设置配置文件格式为YAML
+	viper.AutomaticEnv()            // 读取匹配的环境变量
+	viper.SetEnvPrefix(c.EnvPrefix) // 读取环境变量的前缀为EG
 	replacer := strings.NewReplacer(".", "_")
 	viper.SetEnvKeyReplacer(replacer)
 	if err := viper.ReadInConfig(); err != nil { // viper解析配置文件
@@ -50,6 +56,6 @@ func (c *Config) initConfig() error {
 func (c *Config) watchConfig() {
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
-		eglog.Info().Msgf("Config file changed: %s", e.Name)
+		eglog.Debug().Msgf("Config file changed: %s", e.Name)
 	})
 }

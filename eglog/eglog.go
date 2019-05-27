@@ -64,7 +64,12 @@ func Error() *zerolog.Event {
 func Info() *zerolog.Event {
 	return Logger.Info()
 }
-
-//func Info(msg string) {
-//	Logger.Info().Msg(msg)
-//}
+func Debug() *zerolog.Event {
+	return Logger.Debug()
+}
+func Fatal() *zerolog.Event {
+	return Logger.Fatal()
+}
+func Warn() *zerolog.Event {
+	return Logger.Warn()
+}
