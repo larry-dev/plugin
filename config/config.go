@@ -1,8 +1,8 @@
 package config
 
 import (
+	"gitee.com.egcode.plugins/eglog"
 	"github.com/fsnotify/fsnotify"
-	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 	"strings"
 )
@@ -34,9 +34,9 @@ func (c *Config) initConfig() error {
 		viper.AddConfigPath("conf") // 如果没有指定配置文件，则解析默认的配置文件
 		viper.SetConfigName("config")
 	}
-	viper.SetConfigType("yaml")     // 设置配置文件格式为YAML
-	viper.AutomaticEnv()            // 读取匹配的环境变量
-	viper.SetEnvPrefix("EG") // 读取环境变量的前缀为EG
+	viper.SetConfigType("yaml") // 设置配置文件格式为YAML
+	viper.AutomaticEnv()        // 读取匹配的环境变量
+	viper.SetEnvPrefix("EG")    // 读取环境变量的前缀为EG
 	replacer := strings.NewReplacer(".", "_")
 	viper.SetEnvKeyReplacer(replacer)
 	if err := viper.ReadInConfig(); err != nil { // viper解析配置文件
@@ -50,6 +50,6 @@ func (c *Config) initConfig() error {
 func (c *Config) watchConfig() {
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
-		log.Info().Msgf("Config file changed: %s", e.Name)
+		eglog.Info().Msgf("Config file changed: %s", e.Name)
 	})
 }

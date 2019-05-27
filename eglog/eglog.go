@@ -7,32 +7,64 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 	"os"
+	"sync"
 )
 
-func InitLog() error {
-	zerolog.SetGlobalLevel(zerolog.DebugLevel)
-	var logAdapter=viper.GetString("log.adapter")
-	switch logAdapter {
-	case "console","":
-		log.Logger=log.Output(zerolog.ConsoleWriter{
-			Out:     os.Stdin,
-			NoColor: false,
-			TimeFormat:"2006-01-02 15-04-05",
-		})
-	case "file":
-		config:=rollingwriter.NewDefaultConfig()
-		form:=viper.GetString("log.format")
-		if form==""{
-			form="{}"
+var (
+	once   sync.Once
+	Logger zerolog.Logger
+)
+
+func InitLog() {
+	once.Do(func() {
+		if viper.GetBool("debug") {
+			zerolog.SetGlobalLevel(zerolog.DebugLevel)
+		} else {
+			zerolog.SetGlobalLevel(zerolog.InfoLevel)
 		}
-		if err := json.Unmarshal([]byte(form), &config);err!=nil{
-			return err
+		zerolog.TimeFieldFormat = "2006-01-02 15:04:05"
+		var logAdapter = viper.GetString("log.adapter")
+		switch logAdapter {
+		case "color":
+			Logger = zerolog.New(zerolog.ConsoleWriter{
+				Out:        os.Stdout,
+				NoColor:    false,
+				TimeFormat: "2006-01-02 15-04-05",
+			})
+		case "":
+			Logger = zerolog.New(os.Stdout)
+		case "file":
+			config := rollingwriter.NewDefaultConfig()
+			form := viper.GetString("log.format")
+			if form == "" {
+				form = "{}"
+			}
+			if err := json.Unmarshal([]byte(form), &config); err != nil {
+				log.Error().Err(err)
+			}
+			writer, err := rollingwriter.NewWriterFromConfig(&config)
+			if err != nil {
+				log.Error().Err(err)
+			}
+			Logger = zerolog.New(writer)
 		}
-		writer,err:=rollingwriter.NewWriterFromConfig(&config)
-		if err!=nil{
-			return err
-		}
-		log.Logger=log.Output(writer)
-	}
-	return nil
+		initLogger()
+	})
 }
+
+/**
+绑定log属性
+*/
+func initLogger() {
+	Logger = Logger.With().Timestamp().Caller().Logger()
+}
+func Error() *zerolog.Event {
+	return Logger.Error()
+}
+func Info() *zerolog.Event {
+	return Logger.Info()
+}
+
+//func Info(msg string) {
+//	Logger.Info().Msg(msg)
+//}

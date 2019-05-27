@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func SendResponse(c *gin.Context,err error, data interface{}){
+func SendResponse(c *gin.Context, err interface{}, data interface{}) {
 	code, message := DecodeException(err)
 
 	// always return http.StatusOK

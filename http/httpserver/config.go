@@ -1,9 +1,8 @@
 package httpserver
 
-
 import "net/http"
 
-type Server struct {
+type Config struct {
 	ListenAddr string
 	Handler    http.Handler
 	TLS        TLSConfig
@@ -21,4 +20,3 @@ type TLSConfig struct {
 	// the password to decrypt the certificate
 	Password string
 }
-

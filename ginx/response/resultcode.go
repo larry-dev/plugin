@@ -18,7 +18,7 @@ var (
 /**
  * 格式化异常数据
  */
-func DecodeException(err error) (int, string) {
+func DecodeException(err interface{}) (int, string) {
 	if err == nil {
 		return OK.Code, OK.Message
 	}
@@ -28,8 +28,8 @@ func DecodeException(err error) (int, string) {
 		return typed.Code, typed.Message
 	case *exception.BaseException:
 		return typed.Code, typed.Message
-	default:
+	case error:
+		return InternalServerError.Code, typed.Error()
 	}
-
-	return InternalServerError.Code, err.Error()
+	return InternalServerError.Code, InternalServerError.Message
 }

@@ -16,12 +16,11 @@ import (
 	"bytes"
 	"context"
 	"crypto/tls"
+	"gitee.com.egcode.plugins/ssl"
 	"io/ioutil"
 	"net"
 	"net/http"
 	"time"
-
-	"configcenter/src/common/ssl"
 )
 
 type HttpClient struct {

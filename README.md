@@ -4,3 +4,7 @@
 1. zerolog的整合
 2. viper 配置文件整合
 3. 基于gin框架的共通返回的逻辑封装
+4. 增加http—server封装 支持优雅重启 kill -USR2 [pid],使用的是facebook包
+5. 增加gin 的包生成并增加修复中间件
+6. http-client包的封装
+7. 命令行的封装
