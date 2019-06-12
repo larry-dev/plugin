@@ -5,7 +5,8 @@ import (
 	"net/http"
 )
 
-func SendResponse(c *gin.Context, err interface{}, data interface{}) {
+// 返回json数据
+func RespJson(c *gin.Context, err interface{}, data interface{}) {
 	code, message := DecodeException(err)
 
 	// always return http.StatusOK
