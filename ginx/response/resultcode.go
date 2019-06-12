@@ -6,10 +6,10 @@ import "gitee.com/egcode/plugins/ginx/exception"
 //服务级错误（1为系统级错误）	服务模块代码	   具体错误代码
 var (
 	// success code
-	OK                  = &exception.Exception{Code: 0, Message: "OK"}
-	InternalServerError = &exception.Exception{Code: 1, Message: "Internal server error."}
-	ServiceError        = &exception.Exception{Code: 2, Message: "服务异常"}
-	ParamError          = &exception.Exception{Code: 3, Message: "参数异常"}
+	OK                  = &exception.BaseException{Code: 0, Message: "OK"}
+	InternalServerError = &exception.BaseException{Code: 1, Message: "Internal server error."}
+	ServiceError        = &exception.BaseException{Code: 2, Message: "服务异常"}
+	ParamError          = &exception.BaseException{Code: 3, Message: "参数异常"}
 )
 
 /**
