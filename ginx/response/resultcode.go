@@ -6,13 +6,13 @@ import "gitee.com/egcode/plugins/ginx/exception"
 //服务级错误（1为系统级错误）	服务模块代码	   具体错误代码
 var (
 	// success code
-	OK = &exception.BaseException{Code: 0, Message: "OK"}
+	OK = &exception.Exception{Code: 0, Message: "OK"}
 	// system error codes
-	InternalServerError = &exception.BaseException{Code: 10001, Message: "Internal server error."}
-	ErrBind             = &exception.BaseException{Code: 10002, Message: "Error occurred while binding the request body to the struct."}
+	InternalServerError = &exception.Exception{Code: 10001, Message: "Internal server error."}
+	ErrBind             = &exception.Exception{Code: 10002, Message: "Error occurred while binding the request body to the struct."}
 
 	// service error codes
-	ErrUserNotFound = &exception.BaseException{Code: 20102, Message: "The user was not found."}
+	ErrUserNotFound = &exception.Exception{Code: 20102, Message: "The user was not found."}
 )
 
 /**
