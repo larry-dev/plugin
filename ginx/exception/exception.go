@@ -10,6 +10,10 @@ type BaseException struct {
 func (e *BaseException) Error() string {
 	return e.Message
 }
+func (e *BaseException) RMessage(msg string) *BaseException {
+	e.Message = msg
+	return e
+}
 
 type Exception struct {
 	Code    int
