@@ -13,7 +13,7 @@ func Recovery() gin.HandlerFunc {
 		defer func() {
 			if err := recover(); err != nil {
 				eglog.Error().Str("stack", stack(3)).Msgf("%v", err)
-				response.SendResponse(c, err, nil)
+				response.RespJson(c, err, nil)
 				c.Abort()
 			}
 		}()
