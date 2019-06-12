@@ -2,8 +2,8 @@ package httpserver
 
 import (
 	"fmt"
-	"gitee.com.egcode.plugins/eglog"
-	"gitee.com.egcode.plugins/ssl"
+	"gitee.com/egcode/plugins/eglog"
+	"gitee.com/egcode/plugins/ssl"
 	"github.com/facebookgo/grace/gracehttp"
 	"net/http"
 	"os"

@@ -1,7 +1,7 @@
 package config
 
 import (
-	"gitee.com.egcode.plugins/eglog"
+	"gitee.com/egcode/plugins/eglog"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"strings"

@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"fmt"
-	"gitee.com.egcode.plugins/eglog"
-	"gitee.com.egcode.plugins/ginx/response"
+	"gitee.com/egcode/plugins/eglog"
+	"gitee.com/egcode/plugins/ginx/response"
 	"github.com/gin-gonic/gin"
 	"runtime"
 )
