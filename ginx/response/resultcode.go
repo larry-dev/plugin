@@ -11,6 +11,10 @@ var (
 	ServiceError        = &exception.BaseException{Code: 2, Message: "服务异常"}
 	ParamError          = &exception.BaseException{Code: 3, Message: "参数异常"}
 )
+//格式化异常
+func ServiceException(err error) *exception.Exception {
+	return exception.New(ServiceError, err)
+}
 
 /**
  * 格式化异常数据
