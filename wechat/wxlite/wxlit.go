@@ -11,7 +11,7 @@ import (
 type UserInfo struct {
 	Nickname  string `json:"nickName"`
 	AvatarUrl string `json:"avatarUrl"`
-	Gender    int    `json:"gender"`
+	Gender    uint    `json:"gender"`
 	City      string `json:"city"`
 	Province  string `json:"province"`
 	Country   string `json:"country"`
