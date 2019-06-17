@@ -14,6 +14,7 @@ require (
 	github.com/facebookgo/subset v0.0.0-20150612182917-8dac2c3c4870 // indirect
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/gin-gonic/gin v1.4.0
+	github.com/go-xorm/xorm v0.7.1 // indirect
 	github.com/magiconair/properties v1.8.1 // indirect
 	github.com/pelletier/go-toml v1.4.0 // indirect
 	github.com/rs/zerolog v1.14.3
