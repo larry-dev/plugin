@@ -1,8 +1,8 @@
 package ginx
 
 import (
-	"gitee.com/egcode/plugins/ginx/middleware"
 	"github.com/gin-gonic/gin"
+	"github.com/larry-dev/plugins/ginx/middleware"
 	"github.com/spf13/viper"
 )
 

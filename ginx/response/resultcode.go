@@ -1,6 +1,6 @@
 package response
 
-import "gitee.com/egcode/plugins/ginx/exception"
+import "github.com/larry-dev/plugins/ginx/exception"
 
 //2	                        05	           02
 //服务级错误（1为系统级错误）	服务模块代码	   具体错误代码

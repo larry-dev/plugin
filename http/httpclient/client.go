@@ -16,7 +16,7 @@ import (
 	"bytes"
 	"context"
 	"crypto/tls"
-	"gitee.com.egcode.plugins/ssl"
+	"github.com/larry-dev/plugins/ssl"
 	"io/ioutil"
 	"net"
 	"net/http"

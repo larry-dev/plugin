@@ -1,4 +1,4 @@
-module gitee.com/egcode/plugins
+module github.com/larry-dev/plugins
 
 go 1.12
 

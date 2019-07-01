@@ -1,9 +1,6 @@
 package main
 
 import (
-	"gitee.com/egcode/plugins/eglog"
-	"gitee.com/egcode/plugins/ginx"
-	"gitee.com/egcode/plugins/http/httpserver"
 	"github.com/gin-gonic/gin"
 )
 func init() {
