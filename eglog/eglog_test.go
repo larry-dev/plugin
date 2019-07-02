@@ -13,5 +13,8 @@ func TestInitLog(t *testing.T) {
 		t.Error(err)
 	}
 	InitLog()
+	WithCaller()
 	Logger.Print("测试")
+	//Info().Msg("测试")
+	Error().Msg("测试测物")
 }

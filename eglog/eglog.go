@@ -56,7 +56,10 @@ func InitLog() {
 绑定log属性
 */
 func initLogger() {
-	Logger = Logger.With().Timestamp().Caller().Logger()
+	Logger = Logger.With().Timestamp().Logger()
+}
+func WithCaller()  {
+	Logger=Logger.With().Caller().Logger()
 }
 func Error() *zerolog.Event {
 	return Logger.Error()
