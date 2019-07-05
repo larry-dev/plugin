@@ -8,3 +8,6 @@
 5. 增加gin 的包生成并增加修复中间件
 6. http-client包的封装
 7. 命令行的封装
+8. snowflake算法库
+9. copier 结构体的复制
+10. https://github.com/go-resty/resty.git 可以使用此库代替http-client
