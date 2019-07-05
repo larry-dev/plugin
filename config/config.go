@@ -18,7 +18,7 @@ type Config struct {
 func DefaultConfig() *Config {
 	return &Config{
 		EnvPrefix: "EG",
-		Type:      "yaml",
+		Type:      "toml",
 		Watch:     true,
 	}
 }

@@ -2,12 +2,15 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/larry-dev/plugins/eglog"
+	"github.com/larry-dev/plugins/ginx"
+	"github.com/larry-dev/plugins/http/httpserver"
 )
 func init() {
 	eglog.InitLog()
 }
 func main() {
-	engine := ginx.NewEngine()
+	engine := ginx.NewServerEngine()
 	engine.GET("/", func(context *gin.Context) {
 		context.String(200, "hello world")
 	})

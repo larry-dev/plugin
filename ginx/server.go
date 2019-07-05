@@ -6,9 +6,14 @@ import (
 	"github.com/spf13/viper"
 )
 
-func NewEngine() *gin.Engine {
+// 服务端引擎
+func NewServerEngine() *gin.Engine {
 	gin.SetMode(viper.GetString("run_mode"))
 	engine := gin.New()
 	engine.Use(middleware.Recovery())
+	if viper.GetBool("cors.enable") {
+		engine.Use(middleware.CORS())
+	}
+
 	return engine
 }
