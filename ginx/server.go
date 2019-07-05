@@ -7,9 +7,7 @@ import (
 )
 
 func NewEngine() *gin.Engine {
-	if !viper.GetBool("debug") {
-		gin.SetMode(gin.ReleaseMode)
-	}
+	gin.SetMode(viper.GetString("run_mode"))
 	engine := gin.New()
 	engine.Use(middleware.Recovery())
 	return engine

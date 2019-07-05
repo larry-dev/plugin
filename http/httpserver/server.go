@@ -7,12 +7,16 @@ import (
 	"github.com/larry-dev/plugins/ssl"
 	"net/http"
 	"os"
+	"time"
 )
 
 func NewServer(c Config) error {
 	server := &http.Server{
-		Addr:    c.ListenAddr,
-		Handler: c.Handler,
+		Addr:         c.ListenAddr,
+		Handler:      c.Handler,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  15 * time.Second,
 	}
 	// 开启TLS访问
 	if c.EnableHttps {

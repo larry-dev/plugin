@@ -18,6 +18,6 @@ type Config struct {
 
 func DefaultConfig() Config {
 	return Config{
-		ListenAddr:  ":8080",
+		ListenAddr: ":8080",
 	}
 }
