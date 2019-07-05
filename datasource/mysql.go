@@ -1,15 +1,15 @@
 package datasource
 
 import (
+	"database/sql"
 	"fmt"
 	"github.com/go-sql-driver/mysql"
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/go-xorm/xorm"
+	"github.com/jinzhu/gorm"
 	"github.com/spf13/viper"
 	"time"
 )
 
-func newMysql() (*xorm.Engine, error) {
+func newMysql() (*sql.DB, error) {
 	cfg := mysql.Config{
 		User:                 viper.GetString("mysql.user"),
 		Passwd:               viper.GetString("mysql.passwd"),
@@ -21,17 +21,17 @@ func newMysql() (*xorm.Engine, error) {
 		Net:                  "tcp",
 		AllowNativePasswords: true,
 	}
-	engine, err := xorm.NewEngine("mysql", cfg.FormatDSN())
+	engine, err := gorm.Open("mysql", cfg.FormatDSN())
 	if err != nil {
 		return nil, err
 	}
 	if viper.GetBool("mysql.log") {
-		engine.ShowSQL(true)
+		engine.LogMode(true)
 	}
-	engine.SetMaxIdleConns(viper.GetInt("mysql.min"))
-	engine.SetMaxOpenConns(viper.GetInt("mysql.max"))
-	if err = engine.Ping(); err != nil {
+	engine.DB().SetMaxIdleConns(viper.GetInt("mysql.min"))
+	engine.DB().SetMaxOpenConns(viper.GetInt("mysql.max"))
+	if err = engine.DB().Ping(); err != nil {
 		return nil, err
 	}
-	return engine, nil
+	return engine.DB(), nil
 }

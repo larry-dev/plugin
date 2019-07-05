@@ -1,9 +1,11 @@
 package datasource
 
-import "github.com/go-xorm/xorm"
+import (
+	"database/sql"
+)
 
 type DataSource struct {
-	DB *xorm.Engine
+	MySql *sql.DB
 }
 
 func NewDataSource() (ds *DataSource, err error) {
@@ -12,7 +14,7 @@ func NewDataSource() (ds *DataSource, err error) {
 		return
 	}
 	ds = &DataSource{
-		DB: db,
+		MySql: db,
 	}
 	return
 }
