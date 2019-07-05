@@ -29,7 +29,7 @@ func InitLog() {
 			Logger = zerolog.New(zerolog.ConsoleWriter{
 				Out:        os.Stdout,
 				NoColor:    false,
-				TimeFormat: "2006-01-02 15-04-05",
+				TimeFormat: "2006-01-02 15:04:05",
 			})
 		case "":
 			Logger = zerolog.New(os.Stdout)
@@ -58,8 +58,8 @@ func InitLog() {
 func initLogger() {
 	Logger = Logger.With().Timestamp().Logger()
 }
-func WithCaller()  {
-	Logger=Logger.With().Caller().Logger()
+func WithCaller() {
+	Logger = Logger.With().Caller().Logger()
 }
 func Error() *zerolog.Event {
 	return Logger.Error()

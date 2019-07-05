@@ -15,3 +15,9 @@ type Config struct {
 	// the password to decrypt the certificate
 	Password string
 }
+
+func DefaultConfig() Config {
+	return Config{
+		ListenAddr:  ":8080",
+	}
+}
