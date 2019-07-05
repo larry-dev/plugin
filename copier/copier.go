@@ -5,7 +5,9 @@ import (
 	"errors"
 	"reflect"
 )
-
+/*
+ * source https://github.com/jinzhu/copier.git
+ */
 // Copy copy things
 func Copy(toValue interface{}, fromValue interface{}) (err error) {
 	var (
