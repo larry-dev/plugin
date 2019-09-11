@@ -1,7 +1,6 @@
 package datasource
 
 import (
-	"database/sql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -11,7 +10,7 @@ import (
 	"time"
 )
 
-func NewDBEngine() (*sql.DB, error) {
+func NewDBEngine() (*gorm.DB, error) {
 	dbType := viper.GetString("gorm.dbtype")
 	if dbType == "" {
 		dbType = "sqlite"
@@ -39,5 +38,5 @@ func NewDBEngine() (*sql.DB, error) {
 	if err = engine.DB().Ping(); err != nil {
 		return nil, err
 	}
-	return engine.DB(), nil
+	return engine, nil
 }
